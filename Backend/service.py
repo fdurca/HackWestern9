@@ -80,5 +80,7 @@ def reinit():
     conn.close()
 
 
-reinit()
-print(getEventDetails('3cbd3999-c314-409b-bac0-4cca90d1b6ec'))
+# Test DB
+def tester():
+    reinit()
+    print(getEventDetails('3cbd3999-c314-409b-bac0-4cca90d1b6ec'))
