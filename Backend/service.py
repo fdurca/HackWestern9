@@ -68,13 +68,11 @@ def reinit():
         "CREATE TABLE IF NOT EXISTS event (meetingID UUID PRIMARY KEY DEFAULT gen_random_uuid(), meetingName STRING, slide STRING)",
         # INSERT a row into the messages table
         "INSERT INTO event (meetingID, meetingName, slide) VALUES ('3cbd3999-c314-409b-bac0-4cca90d1b6ec', 'TestName', 'TestSlide')",
-        # Test
-        "SELECT * FROM event"
     ]
 
     # Run queries
     for query in queries:
-        print(execute(conn, query))
+        execute(conn, query)
 
     # Close connection
     conn.close()
