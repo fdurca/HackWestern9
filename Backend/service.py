@@ -3,21 +3,20 @@ import psycopg
 import logging
 from psycopg.errors import ProgrammingError
 
+
 # Service methods
-# Actually does the work here
-# Example
 def execute(conn, query):
     try:
         with conn.cursor() as cur:
             cur.execute(query)
             row = cur.fetchone()
             conn.commit()
-            if row:
-                print(row[0])
+            return row
     except ProgrammingError:
         return "Error"
 
 
+# Creates an event and adds it to the database
 def createEvent(eventName, slides):
     # Connect to db
     conn = psycopg.connect(
@@ -32,7 +31,28 @@ def createEvent(eventName, slides):
 
     # Close connection
     conn.close()
-    
+
+
+# Creates an event and adds it to the database
+def getEventDetails(eventID):
+    # Connect to db
+    conn = psycopg.connect(
+        "postgresql://fdurca:5kk6SvI9LGmNRosjvP03CA@hackwestern9-6731.5xj.cockroachlabs.cloud:26257/HackWestern9?sslmode=verify-full",
+        application_name="$ select_db")
+
+    # Create DB
+    query = "SELECT meetingName, slide FROM event WHERE meetingID='" + eventID + "'"
+
+    # Run queries
+    reply = execute(conn, query)
+
+    # Close connection
+    conn.close()
+
+    # Return reply
+    return reply
+
+
 # Init db
 def reinit():
     # Connect to db
@@ -47,19 +67,18 @@ def reinit():
         # CREATE the messages table
         "CREATE TABLE IF NOT EXISTS event (meetingID UUID PRIMARY KEY DEFAULT gen_random_uuid(), meetingName STRING, slide STRING)",
         # INSERT a row into the messages table
-        "INSERT INTO event (meetingID, slide) VALUES ('See!', 'Kill Yourself')",
-        # SELECT a row from the messages table
-        "SELECT slide FROM event"
+        "INSERT INTO event (meetingID, meetingName, slide) VALUES ('3cbd3999-c314-409b-bac0-4cca90d1b6ec', 'TestName', 'TestSlide')",
+        # Test
+        "SELECT * FROM event"
     ]
 
     # Run queries
     for query in queries:
-        print("Query - ", end="")
-        execute(conn, query)
+        print(execute(conn, query))
 
     # Close connection
     conn.close()
 
 
 reinit()
-print("Queries ran")
+print(getEventDetails('3cbd3999-c314-409b-bac0-4cca90d1b6ec'))
