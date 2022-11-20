@@ -1,17 +1,19 @@
 import React from 'react';
+import Nav from '../Components/Nav';
+
 function ClientPresent() {
   return (
-   <body>
-    <html className='bg-slate-800 pb-[50%]'>
-    <a href="/"><button className='ml-[10%] mt-5 py-5 px-8 text-xl font-bold hover:text-blue-500 hover:border-blue-500 text-white border-2 rounded-full'>Return Home</button></a>
-        <div className='text-3xl font-bold text-center text-white py-20'>Joing an Event</div>
-        <article className='rounded-3xl pb-2 bg-green-500 w-3/4 ml-[12.5%]'>
-            <div className='ml-[15%] font-bold py-5'>Event ID:</div>
-            <input className='rounded-full w-[90%] mx-[5%] py-3' type="text" />
-            <div className='ml-[15%] font-bold py-3'>User ID:</div>
-            <input className='rounded-full w-[90%] mx-[5%] py-3 mb-14' type="text" />
-            <a href='/viewing'><div className='rounded-full bg-blue-500 py-3 px-10 ml-[25%] w-2/4 text-center font-bold mb-12'>Join</div></a>
+    <body>
+    <html>
+      < Nav />
+     <div className='text-white text-6xl text-center mt-[4%] font-bold font-sans'>Join Meeting</div>
+        <article>
+            <input className='text-center mt-12 placeholder-black placeholder-xl border-2 border-black rounded-full w-[80%] mx-[10%] py-2 mb-14 px-5' type="text" placeholder='Paste Invite Link Here' />
+           
+            <a className='ml-[78%] px-10 active:opacity-70 border-2 border-purple-500 rounded-full text-3xl font-bold font-sans text-white  bg-blue-900  py-5 text-center mt-10 mr-[10%]' href ={"/ClientMeeting1"}>Join</a>
+            
         </article>
+        <img className='w-[100%] h-[800px] -z-50 absolute top-0' src={require("../join.jpg")} alt="" />
     </html>
    </body>
   );

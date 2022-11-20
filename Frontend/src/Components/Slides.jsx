@@ -24,9 +24,7 @@ const Slides = () => {
     
     return (
         <div>
-        <iframe id = 'iframe' name = 'good' className='mr-20 block overflow-hidden' title="uniquetitle" src="https://docs.google.com/presentation/d/e/2PACX-1vTZjshq8U7DgSVtivg4Rri-hdMfB64ARkF4RaAYIaZCjDvMCqd31yEOvmexOcA95b-BzEqtb8a8lslE/embed?start=false&loop=false&delayms=3000&slide=id.g1033c357ab2_0_93" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-        <div id="message">6uuu</div>
-      
+            <iframe id = 'iframe' name = 'good' className='w-full h-[500px] border-2 border-white mt-10  block overflow-hidden' title="uniquetitle" src="https://docs.google.com/presentation/d/e/2PACX-1vTwkykQQXTvJt3fouHe5LRUbML34_2maH_381QHUazc4T3avkN9x826cHlz25XQKbhh4DsiZ3DaosWX/embed?start=false&loop=false&delayms=3000" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
         </div>
     );
   }

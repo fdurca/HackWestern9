@@ -1,6 +1,8 @@
 pip install django
-pip install rest_framework
+pip install djangorestframework
 pip install punctuator
 pip3 install "psycopg[binary]"
 pip3 install SpeechRecognition pydub
-pip install cohere pandas
+pip install cohere 
+pip install django-cors-headers
+pip install pandas

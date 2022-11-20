@@ -2,60 +2,13 @@ import React from 'react';
 import Slides from '../Components/Slides';
 import { useState } from "react";
 import ReactDOM from "react-dom/client";
+import { Routes, Route, useParams } from 'react-router-dom';
 
-// window.onload = function() {
-
-//         var seconds = 0;
-//         var choice = 0;
-//         var bool = true;
-
-//         // function incrementSeconds() {
-//         // seconds += 1;
-//         // document.getElementById("counter").innerHTML = seconds;
-//                //     var cancel = setInterval(incrementSeconds, 1000);
-//         // }
-
-     
-
-//     const parts = [];
-//     let mediaRecorder;
-//     navigator.mediaDevices.getUserMedia ({ audio: true, video: false}).then(stream => {
-        
-//         // document.getElementById("video").srcObject = stream;
-//             document.getElementById("btn").onclick = function () {
-//             document.getElementById("counter").innerHTML = "Started Recording";
-//             mediaRecorder = new MediaRecorder(stream);
-//             mediaRecorder.start(1000);
-
-//             mediaRecorder.ondataavailable = function (e) {
-//                 parts.push(e.data);
-//             }
-//         }
-        
-//         document.getElementById("stop_btn").onclick = function () {
-//             choice = 2;
-//             seconds = 0;
-//             document.getElementById("counter").innerHTML = "Recording Stopped";
-//             mediaRecorder.stop();
-//             const blob = new Blob(parts, {
-//                 type: "audio/wav"
-//             });
-//             const url = URL.createObjectURL(blob);
-//             const a = document.createElement("a");
-//             document.body.appendChild(a);
-//             a.style = "display : none";
-//             a.href = url;
-//             a.download = "test.wav";
-//             a.click();
-//         }
-//     });
-    
-// }
 
 
 
 const Present = () => {
-    
+  
     let check = 0;
 
     function state() {
@@ -91,58 +44,13 @@ const Present = () => {
         }
     }
         
-       
-    
-
-        
-        // function incrementSeconds() {
-        // seconds += 1;
-        // document.getElementById("counter").innerHTML = seconds;
-               //     var cancel = setInterval(incrementSeconds, 1000);
-        // }
-
-     
-
-//     const parts = [];
-//     let mediaRecorder;
-//     navigator.mediaDevices.getUserMedia ({ audio: true, video: false}).then(stream => {
-        
-          
-//         // document.getElementById("video").srcObject = stream;
-//            document.getElementById("btn").onclick = function () {
-//             document.getElementById("counter").innerHTML = "Started Recording";
-//             mediaRecorder = new MediaRecorder(stream);
-//             mediaRecorder.start(1000);
-
-//             mediaRecorder.ondataavailable = function (e) {
-//                 parts.push(e.data);
-//             }
-//        }
-    
-   
-//         document.getElementById("stop_btn").onclick = function () {
-//            document.getElementById("counter").innerHTML = "Recording Stopped";
-//             mediaRecorder.stop();
-//             const blob = new Blob(parts, {
-//                 type: "audio/wav"
-//             });
-//             const url = URL.createObjectURL(blob);
-//             const a = document.createElement("a");
-//             document.body.appendChild(a);
-//             a.style = "display : none";
-//             a.href = url;
-//             a.download = "test.wav";
-//             a.click();
-//          }
-    
-// })
     
   return (
     <body>
     <html className='bg-slate-800'>
     <Slides />
     <article className='ml-[5%] mt-[5%] flex'>
-        <div>
+    <div>
         <div id = "counter" className='pb-5 px-4 text-white'></div>
         <div><button onClick = {state} className='active:bg-green-500/50 bg-green-500 rounded-xl py-3 px-5 font-bold' id ="btn">Start Recording</button></div>
         {/* <div><button className='active:bg-red-500/50 bg-red-500 rounded-xl py-3 px-5 font-bold mt-5 mb-20' id ="stop_btn">Stop Recording</button></div> */}
