@@ -28,12 +28,16 @@ def createEvent(eventName, slide):
 
     # Run queries
     meetingID = execute(conn, query)
+
     # Insert into slide count
     slides[meetingID] = 0
-    audio[meetingID] = []
+
+    # TO DO - audio[meetingID] =
 
     # Close connection
     conn.close()
+
+    return getEventDetails(meetingID)
 
 # Get all for testing purposes
 def getAll():
@@ -107,4 +111,4 @@ def tester():
     print("Success")
     createEvent("tester1", "tester2")
     print(getEventDetails('3cbd3999-c314-409b-bac0-4cca90d1b6ec'))
-#tester()
+
