@@ -1,8 +1,9 @@
 # Imports
-import utils
+
+from venv import create
 import psycopg
-import noteTranslation
-from utils import execute
+import hackw.noteTranslation as noteTranslation
+from .utils import execute, executeMulti, reinit
 
 # Global variables
 slides = {}
@@ -49,7 +50,7 @@ def getAll():
     query = "SELECT * FROM event"
 
     # Run queries
-    reply = utils.executeMulti(conn, query)
+    reply = executeMulti(conn, query)
 
     # Close connection
     conn.close()
@@ -65,7 +66,7 @@ def getEventDetails(eventID):
         application_name="$ select_db")
 
     # Create DB
-    query = "SELECT meetingName, slide FROM event WHERE meetingID='" + eventID + "'"
+    query = "SELECT meetingName, slide FROM event WHERE meetingID='" + str(eventID) + "'"
 
     # Run queries
     reply = execute(conn, query)
@@ -106,7 +107,8 @@ def summarySlide(meetingID, audio):
 
 # Test DB
 def tester():
-    utils.reinit()
+    reinit()
     print("Success")
     createEvent("tester1", "tester2")
     print(getEventDetails('3cbd3999-c314-409b-bac0-4cca90d1b6ec'))
+
