@@ -3,9 +3,7 @@
 import requests
 import speech_recognition as sr
 import cohere
-import time
-import pandas as pd
-from punctuator import Punctuator
+import requests
 
 # Global variables
 api_key = "RG7HNjYkf3BPA7KkdWrb6VdqvVZXWNA78mNTwyvN"
@@ -26,23 +24,58 @@ def speechToText(audio):
         return r.recognize_google(audioData)
 
 
+# Punctuate text
+def punctuate(text):
+
+    endpoint = "http://bark.phon.ioc.ee/punctuator"
+
+    # Call upon api
+    response = requests.post(endpoint, params={
+        "text": text
+    })
+
+    reply = response.content.decode()
+
+    # Testing
+    print(reply)
+    print()
+    print()
+
+    # Close connection
+    response.close()
+
+    return reply
+
 # Create a summary using cohere
 def summary(audio):
     # Translate the audio to text
     text = speechToText(audio)
 
     # Punctuate data
-    punc = Punctuator('model.pcl')
-    text = punc.punctuate(text)
+    txt = punctuate(text)
+
+    # Variables for processing
+    bestText = " "
+    bestSum = -1000
 
     # Leverage cohere to generate summary
     sumText = co.generate(
-        model='large',
-        prompt=text,
-        return_likelihoods='GENERATION'
+        model='command-xlarge-20221108',
+        prompt=txt,
+        return_likelihoods='GENERATION',
+        temperature=0.8,
+        max_tokens=120,
+        num_generations=5
     )
 
-    # Return summary
-    return sumText[0]
+    # Get the most likely text
+    for gen in sumText:
+        sumLikelihood = 0
+        for t in gen.token_likelihoods:
+            sumLikelihood += t.likelihood
+        if bestSum < sumLikelihood:
+            bestText = gen
+            bestSum = sumLikelihood
 
-print(summary("test.wav"))
+    # Return summary
+    return bestText
